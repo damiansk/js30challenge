@@ -16,7 +16,7 @@
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     ctx.lineWidth = 1;
-    ctx.globalCompositeOperation = 'multiply';
+    ctx.globalCompositeOperation = 'overlay';
 
     let isDrawing = false;
     let lastX = 0;
