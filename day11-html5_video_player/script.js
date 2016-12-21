@@ -26,7 +26,6 @@
     }
 
     function skip() {
-        console.dir( video );
         video.currentTime += parseFloat( this.dataset.skip );
     }
     
@@ -40,8 +39,8 @@
     }
 
     function scrub( e ) {
-        video.currentTime = ( e.offsetY / progress.offsetWidth ) * video.duration;
-        console.log( e );
+        const scrubTime = ( e.offsetX / progress.offsetWidth ) * video.duration;
+        video.currentTime = scrubTime;
     }
 
 
