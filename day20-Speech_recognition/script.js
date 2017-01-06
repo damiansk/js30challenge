@@ -23,6 +23,13 @@
 		p.textContent = transcript;
 
 		if ( e.results[0].isFinal ) {
+
+			if ( transcript.includes('jednorożec') || transcript.includes('jednorożca') ) {
+				const unicorn = document.createElement( 'p' );
+				unicorn.innerHTML = '<img src="https://s-media-cache-ak0.pinimg.com/originals/62/7d/24/627d24ddcca0074306c8098cd509beeb.png" alt="unicorns">';
+				classWords.appendChild( unicorn );
+			}
+
 			p = document.createElement( 'p' );
 			classWords.appendChild( p );
 		}
