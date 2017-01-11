@@ -9,6 +9,45 @@
 	const speakButton = document.querySelector('#speak');
 	const stopButton = document.querySelector('#stop');
 
+	msg.text = document.querySelector( '[name="text"]' ).value;
 
+	function populateVoices() {
+		voices = this.getVoices();
+		voicesDropdown.innerHTML = voices
+			//.filter( voice => voice.lang.includes( 'pl' ) )
+			.map( voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>` )
+			.join( '' );
+
+		console.log( voices );
+	}
+
+	function toggle ( startOver = true ) {
+		speechSynthesis.cancel();
+
+		if ( startOver ) {
+			speechSynthesis.speak( msg );
+		}
+
+		console.dir( this );
+	}
+
+	function setVoice () {
+		// "this" is chosen option in dropdown list
+		msg.voice = voices.find( voice => voice.name === this.value );
+		toggle()
+	}
+	
+	function setOption () {
+		console.log( this.name, this.value );
+
+		msg[this.name] = this.value;
+		toggle();
+	}
+
+	speechSynthesis.addEventListener( 'voiceschanged', populateVoices );
+	voicesDropdown.addEventListener( 'change', setVoice );
+	options.forEach( option => option.addEventListener( 'change', setOption ) );
+	speakButton.addEventListener( 'click', toggle );
+	stopButton.addEventListener( 'click', toggle.bind(null, false) );
 
 } )();
